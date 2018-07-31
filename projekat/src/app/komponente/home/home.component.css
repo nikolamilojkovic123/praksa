@@ -1,0 +1,25 @@
+.container{
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+
+button{
+    width: 300px;
+    padding: 25px 65px;
+    border: 1px solid blue;
+    background-color: white;
+    color: blue;
+    font-size: 130%;
+    border-radius: 10px;
+}
+
+
+button:hover{
+    border: none;
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+    font-size: 150%;
+}

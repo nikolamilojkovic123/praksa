@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6">
+          <div (change)="proveriIme()">
+            <input type="text" name="ime" placeholder="Ime" [(ngModel)]="u.ime">
+            <img src="../../../assets/images/uzvicnik.png" [hidden]="loseIme==''" matTooltip="{{loseIme}}" [matTooltipPosition]="position"
+              style="font-size: 200%;">
+          </div>
+          <br>
+          <br>
+          <div (change)="ProveriEmail()">
+            <input type="email" name="email" placeholder="Email" [(ngModel)]="u.email">
+            <img src="../../../assets/images/uzvicnik.png" [hidden]="losEmail==''" matTooltip="{{losEmail}}" [matTooltipPosition]="position"
+              style="font-size: 200%;">
+          </div>
+          <br>
+          <br>
+          <div (change)="ProveraSifre()">
+            <input type="password" name="lozinka" placeholder="Lozinka" [(ngModel)]="u.lozinka">
+            <img src="../../../assets/images/uzvicnik.png" [hidden]="losaSifra==''" matTooltip="{{losaSifra}}" [matTooltipPosition]="position"
+              style="font-size: 200%;">
+          </div>
+          <br>
+          <br>
+          <div (change)="PoklapanjeSifri()">
+            <input type="password" name="potvrdaSifre" placeholder="Potvrdi lozinku" [(ngModel)]="potvrdaLozinke">
+            <img src="../../../assets/images/uzvicnik.png" [hidden]="losePoklapanjeSifre==''" matTooltip="{{losePoklapanjeSifre}}" [matTooltipPosition]="position"
+              style="font-size: 200%;">
+          </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" (click)="RegistrujSe()">Registruj se</button>
+      </div>
+    </div>
+  </div>
+</div>
