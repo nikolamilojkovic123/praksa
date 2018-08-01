@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserServiceService } from '../../servisi/user-service.service';
+import { User } from '../../klase/user';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,18 +12,27 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   email:string;
-  lozinka:string;
+  password:string;
 
+  user = new User();
 
-
-  constructor() { }
+  constructor
+  (
+    private userService:UserServiceService,
+    private toastr: ToastrService
+  ) 
+  { }
 
   ngOnInit() {
   }
 
   PrijaviSe()
   {
-    console.log(this.email+" "+this.lozinka);
+    this.user.email=this.email;
+    this.user.password=this.password;
+
+    this.userService.UlogujSe(this.user);
+   
   }
 
 }

@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './komponente/register/register.component';
 import { HomeComponent } from './komponente/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './komponente/login/login.component';
+import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 
 
 
@@ -24,7 +25,8 @@ import { LoginComponent } from './komponente/login/login.component';
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PocetnaComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { LoginComponent } from './komponente/login/login.component';
     FormsModule,
     MatTooltipModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

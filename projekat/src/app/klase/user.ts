@@ -1,18 +1,19 @@
 export class User {
 
     public id_korisnika:number;
-    public ime:string;
-    public lozinka:string;
+    public name:string;
+    public password:string;
     public email:string;
-    
+    public password_confirmation:string;
+
     public static FromJSON(objekat:any):User
     {  
         let korisnik=new User();
         korisnik.id_korisnika = objekat.id_korisnika;
-        korisnik.ime=objekat.ime;
-        korisnik.lozinka=objekat.lozinka;
+        korisnik.name=objekat.name;
+        korisnik.password=objekat.password;
         korisnik.email=objekat.email;
-
+        korisnik.password_confirmation=objekat.password_confirmation;
         return korisnik;
     }
 
