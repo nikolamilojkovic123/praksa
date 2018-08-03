@@ -15,6 +15,7 @@ import { HomeComponent } from './komponente/home/home.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
+import { NavbarComponent } from './komponente/navbar/navbar.component';
 
 
 
@@ -26,7 +27,8 @@ import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
     RegisterComponent,
     HomeComponent,
     LoginComponent,
-    PocetnaComponent
+    PocetnaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

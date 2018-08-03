@@ -1,4 +1,4 @@
-<div class="container" style="margin: auto;">
+<div class="container">
   <h1>Registracija</h1>
   <br>
   <input type="text" name="ime" placeholder="Ime" [(ngModel)]="u.name">
@@ -14,5 +14,7 @@
   <br>
   <br>
   <button type="button" (click)="RegistrujSe()">Registruj se</button>
+  <br><br>
+  <a [routerLink]='["/prijava"]' style="font-size: 120%;">Prijava...</a>
 
 </div>

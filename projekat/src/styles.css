@@ -4,4 +4,10 @@
 body
 {
     margin:auto;
+    background-image: url(../src/assets/images/pozadina1.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

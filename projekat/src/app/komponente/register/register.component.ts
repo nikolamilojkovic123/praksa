@@ -3,7 +3,11 @@ import { Router } from '@angular/router';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../klase/user'
-import { UserServiceService } from '../../servisi/user-service.service'
+import { UserServiceService } from '../../servisi/user-service.service';
+import swal from 'sweetalert2';
+
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -46,12 +50,14 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(["/prijava"]);
         }
       },
-      (errorResp: any) =>
-      {
+      error=>{
+        console.log("Error: "+error.error.message);
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: error.error.message
+        })
         
-        if (errorResp.message != null)
-          this.toastr.error("Losi podaci");
-      
       });
   }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter,Injectable, Output } from '@angular/core';
 
 
 
@@ -7,81 +7,60 @@ import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 
+import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { EMPTY } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public loggedIn = new BehaviorSubject<boolean>(false);
-  private userType: number;
 
-  constructor(private http: Http) 
-  { 
-    const jwtToken = this.GetToken();
-    this.loggedIn = new BehaviorSubject<boolean>(jwtToken ? true : false);
-  }
+  private signed:boolean;
+  @Output() isLogged = new EventEmitter<boolean>();
 
-  public IsAuthenticated(): boolean
-  { 
-    const token = this.GetToken();
-    return token ? true : false;
-  }
-
-  public BuildHeaders(): Headers
+  constructor
+  (
+    private router:Router,
+    private http:HttpClient,
+  )
   {
-    const headerConfig = 
-    {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    };
 
-    let token = this.GetToken();
-    if (token)
-    {
-      headerConfig['Authorization'] = `Token ${token}`;
-    }
-
-    return new Headers(headerConfig);
   }
 
-  public GetToken(): string
+  signIn(answer:any):void
   {
-    return window.localStorage['jwtToken'];
+    this.signed=true;
+
+    localStorage.setItem('access_token',answer['access_token']);
+    localStorage.setItem('username',answer['data'].name);
+    localStorage.setItem('id',answer['data'].id);
+    window.location.replace('/igra');
+
   }
 
-  public SaveToken(token: string): void
+  isSigned():boolean
   {
-    window.localStorage['jwtToken'] = token;
+    localStorage.getItem('acces_token') != null ? this.signed=true : this.signed=false;
+    this.isLogged.emit(this.signed);
+    return this.signed;
   }
 
-  public DestroyToken(): void
+  logout()
   {
-    window.localStorage.removeItem('jwtToken');
+    localStorage.clear();
+    window.location.replace('');
   }
 
-  public LoginState(state: boolean)
+  handleError(err:HttpErrorResponse)
   {
-    this.loggedIn.next(state);
+    if(err.error instanceof ErrorEvent)
+      console.log("Error"+err.error.message);
     
-    if (this.loggedIn.getValue())
-      this.userType = parseInt(JSON.parse(localStorage.getItem('user')).id_tipa_korisnika);
-    else
-      this.userType = 0;
-  }
-
-  public UserType(): number
-  {
-    return this.userType;
+    return EMPTY;
   }
 
 
-
-  //--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
-/*
-  public Check(user: any)
-  {
-    var headers = this.BuildHeaders();
-    return this.http.post(environment.apiUrl+"/check", {'korisnik': user}, {headers:headers}).map(res=>res.json());
-  }*/
 }

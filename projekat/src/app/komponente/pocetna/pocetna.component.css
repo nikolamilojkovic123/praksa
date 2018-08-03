@@ -1,0 +1,18 @@
+.odjava
+{
+    float: right;
+    margin-top: 1%;
+    margin-right: 3%;
+    border: none;
+    background-color: transparent;
+    color:#073175;
+    font-size: 120%;
+}
+
+.odjava:hover
+{
+    color: green;
+    border: 1px solid green;
+    padding: 1% 2%;
+    
+}

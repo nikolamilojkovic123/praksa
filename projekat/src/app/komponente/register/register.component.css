@@ -7,6 +7,8 @@ input{
     height: 30px;
     padding-left: 10px; 
     margin: auto;
+    outline-style: none;
+    box-shadow: none;
 }
 
 .container
@@ -28,6 +30,9 @@ button{
     font-size: 100%;
     border-radius: 10px;
     margin-top: 2%;
+    outline-style: none;
+    box-shadow: none;
+    
 }
 
 h1{
@@ -42,10 +47,23 @@ button:hover{
     cursor: pointer;
     font-size: 100%;
     margin-top: 2%;
+    outline-style: none;
+    box-shadow: none;
+   
    
 }
 input:focus{
-    border: 2px solid #073175;
+    border: 1px solid #073175;
     outline-style: none;
     box-shadow: none;
+}
+
+a{
+    color: #6296ea;
+}
+
+a:hover
+{
+    color: #073175;
+    cursor: pointer;
 }

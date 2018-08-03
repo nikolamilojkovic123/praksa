@@ -3,14 +3,13 @@ import { Http, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 import { User } from '../klase/user';
 
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Subject } from 'rxjs/internal/Subject';
 
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment'
 import { AuthService } from '../servisi/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,11 @@ export class UserServiceService {
 
   constructor
   (
-    private http: Http,
+    
     private router: Router,
     private authService: AuthService,
     private toastr:ToastrService,
+    private http:HttpClient,
   ) 
   { 
 
@@ -35,36 +35,29 @@ export class UserServiceService {
     return this.http.post(url+ "/register",user);
   }
 
-  UlogujSe(user:User)
+  UlogujSe(user:User):Observable<any>
   {
-    var url = environment.apiUrl;
-    var headers = this.authService.BuildHeaders();
+    var url = environment.apiUrl+"/login";
+    var header = new HttpHeaders();
+    header.set('Accept','application/json');
     //console.log(user);
-    return this.http.post(url+ "/login",JSON.stringify(user), {headers: headers})
-    .subscribe
-             (
-              
-              (resp: any) =>
-              {
-                console.log("jedan");
-                  // Sesija
-                  localStorage.setItem('user', JSON.stringify(resp.user));
 
-                  // Autorizacija
-                  this.authService.LoginState(true);
-                  this.authService.SaveToken(resp.token);
+    let fd = new FormData();
+    fd.append('email',user.email);
+    fd.append('password',user.password);
 
-                   // Poruka
-                   this.toastr.success(`Uspesno logovanje ${resp.user.korisnicko_ime}`);
-                   this.router.navigate(["/igra"]);
-                 
-              }, 
-              (errorResp: any) =>
-              {
-                console.log("dva");
-                  this.authService.LoginState(false);
-                  this.toastr.error("Greska");
-              }
-            );
+    return this.http.post(url, user, {headers:header});
+
   }
+
+  IzlogujSe():Observable<any>
+  {
+    var url = environment.apiUrl+"/logout";
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header});
+  }
+
 }
