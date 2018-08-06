@@ -20,7 +20,7 @@ import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 import { NavbarComponent } from './komponente/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
-import { Echo } from 'laravel-echo';
+import  Echo from 'laravel-echo';
 import * as io from 'socket.io-client';
 
 
