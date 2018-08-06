@@ -5,9 +5,14 @@
     </button>
 
     <mat-card *ngFor="let user of users">
-        {{user.user}}
+        {{user.name}}
         <button mat-raised-button color="primary">Izazovi</button>
     </mat-card>
   
+   <!-- <ul>
+       <li *ngFor="let i of users">
+        {{i.name}}
+       </li> 
+    </ul>-->
 
 </div>

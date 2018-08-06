@@ -20,9 +20,12 @@ import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 import { NavbarComponent } from './komponente/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
-import  Echo from 'laravel-echo';
-import * as io from 'socket.io-client';
 
+
+declare global{
+  interface Window { io: any; }
+  interface Window { Echo: any; }
+}
 
 
 @NgModule({
@@ -47,7 +50,7 @@ import * as io from 'socket.io-client';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    Echo,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

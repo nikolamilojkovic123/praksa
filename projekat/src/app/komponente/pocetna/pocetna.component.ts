@@ -3,21 +3,23 @@ import { AuthService } from '../../servisi/auth.service';
 import { UserServiceService } from '../../servisi/user-service.service'
 import swal from 'sweetalert2';
 import Echo from 'laravel-echo';
-import * as io from 'socket.io-client';
+import * as io from 'socket.io-client'
 
 import { element } from '@angular/core/src/render3/instructions';
 
 
-declare global{
-  interface Window { io: any; }
-  interface Window { Echo: any; }
-}
 
-declare var Echo: any;
+/*declare var Echo: any;
+
+
+
+
+
+
 
 window.io = window.io;
 window.Echo = window.Echo || {};
-
+*/
 
 @Component({
   selector: 'app-pocetna',
@@ -39,28 +41,47 @@ export class PocetnaComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     this.prijavljen=this.authService.isSigned();
-    let token = 'Bearer' + localStorage.getItem('access_token');
-     window.Echo = new Echo({
+
+    //gadja server
+    
+    /*let token = 'Bearer ' + localStorage.getItem('access_token');
+    window.io = window.io;
+    window.Echo = new Echo(
+    {
       broadcaster: 'socket.io',
-      host: 'https://tictactoe.local:6003',
+      host: 'http://tictactoe.local:6003',
 
-      auth:
-      {
-        headers:{
-          'Authorization': token
+        auth:
+        {
+          headers:
+          {
+            'Authorization': token
+          }
         }
-      }
+      });*/
+        window.Echo = new Echo({
+          broadcaster: 'socket.io',
+          host: 'http://tictactoe.local:6003',
+          auth:
+          {
+              headers:
+              {
+                  'Authorization':'Bearer ' + localStorage.getItem('access_token'),
+              }
+          }   
+        });
+    
+        //window.Echo.connector.options.auth.headers['X-Socket-ID'] = 'Bearer ' + window.Echo.connector.socket.id;
 
-    });
 
     window.Echo.join('lobby')
       .here((users)=>
       {
         users.forEach(element =>
         {
-          if(element.id != localStorage.getItem('id'))
+          //if(element.id != localStorage.getItem('id'))
             this.users.push(element);
         });
       })
@@ -75,10 +96,7 @@ export class PocetnaComponent implements OnInit {
       });
     
     
-   window.Echo.channel('channel-name')
-        .listen('.channelEvent', (data) => {
-          console.log('From laravel echo: ', data);
-        });
+  
   }
 
   OdjaviSe()
