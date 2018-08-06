@@ -7,6 +7,7 @@
     background-color: transparent;
     color:#073175;
     font-size: 120%;
+    display: block;
 }
 
 .odjava:hover
@@ -15,4 +16,33 @@
     border: 1px solid green;
     padding: 1% 2%;
     
+}
+
+
+.lista
+{
+    width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    overflow: auto;
+
+}
+
+.prvaKolona{
+    text-align: left !important;
+   
+}
+
+.drugaKolona
+{
+    text-align: center !important;
+    
+}
+
+mat-grid-tile
+{
+    height: 50px !important;
+    border-top: 1px solid black;
 }

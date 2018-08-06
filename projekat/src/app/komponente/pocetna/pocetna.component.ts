@@ -95,6 +95,10 @@ export class PocetnaComponent implements OnInit {
         this.users.splice(this.users.indexOf(user))
       });
     
+      window.Echo.private(`user.${localStorage.getItem('id')}`)
+    .listen('NewChallengeEvent', (e) => {
+        console.log(e);
+    });
     
   
   }

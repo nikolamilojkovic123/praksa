@@ -1,18 +1,22 @@
-<div class="container" > 
+<div class="container"> 
     
     <button class="odjava" (click)="OdjaviSe()">
         Odjavi se
     </button>
-
-    <mat-card *ngFor="let user of users">
-        {{user.name}}
-        <button mat-raised-button color="primary">Izazovi</button>
-    </mat-card>
-  
-   <!-- <ul>
-       <li *ngFor="let i of users">
-        {{i.name}}
-       </li> 
-    </ul>-->
+    <br><br><br><br><br><br>
+    <div class="lista">
+        <mat-card *ngFor="let user of users" style="display: block;">
+            
+            
+            <mat-grid-list cols="2">
+                <mat-grid-tile class="prvaKolona">
+                    {{user.name}}
+                </mat-grid-tile>
+                <mat-grid-tile class="drugaKolona">
+                    <button mat-raised-button color="primary">Izazovi</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card>
+    </div>
 
 </div>

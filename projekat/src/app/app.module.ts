@@ -20,7 +20,7 @@ import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 import { NavbarComponent } from './komponente/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 declare global{
   interface Window { io: any; }
@@ -50,7 +50,7 @@ declare global{
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
