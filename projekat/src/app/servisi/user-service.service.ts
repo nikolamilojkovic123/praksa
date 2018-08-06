@@ -60,4 +60,15 @@ export class UserServiceService {
     return this.http.get(url, {headers:header});
   }
 
+
+  /*getAllUsers():Observable<any>
+  {
+    var url = environment.apiUrl+"/logout";
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header});
+  }*/
+
 }

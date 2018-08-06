@@ -4,6 +4,10 @@
         Odjavi se
     </button>
 
+    <mat-card *ngFor="let user of users">
+        {{user.user}}
+        <button mat-raised-button color="primary">Izazovi</button>
+    </mat-card>
   
 
 </div>
