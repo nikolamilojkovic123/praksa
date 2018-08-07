@@ -4,7 +4,7 @@ import { UserServiceService } from '../../servisi/user-service.service'
 import swal from 'sweetalert2';
 import Echo from 'laravel-echo';
 import * as io from 'socket.io-client'
-
+import { GameService } from '../../servisi/game.service';
 import { element } from '@angular/core/src/render3/instructions';
 
 
@@ -30,11 +30,12 @@ export class PocetnaComponent implements OnInit {
 
   prijavljen:boolean=false;
   users = [];
-
+  challanges = [];
   constructor
   (
     private authService:AuthService,
     private userService:UserServiceService,
+    private gameService:GameService,
   ) 
   { 
     window.io=io;
@@ -81,7 +82,7 @@ export class PocetnaComponent implements OnInit {
       {
         users.forEach(element =>
         {
-          //if(element.id != localStorage.getItem('id'))
+          if(element.id != localStorage.getItem('id'))
             this.users.push(element);
         });
       })
@@ -96,12 +97,81 @@ export class PocetnaComponent implements OnInit {
       });
     
       window.Echo.private(`user.${localStorage.getItem('id')}`)
-    .listen('NewChallengeEvent', (e) => {
-        console.log(e);
-    });
+      .listen('NewChallengeEvent', (e) => {
+          this.challanges.push(e);
+          console.log(e);
+      });
     
   
   }
+
+  Izazovi(userID)
+  {
+    this.gameService.Izazovi(userID).subscribe((resp: any) =>
+    {
+      console.log(resp);
+      if(resp)
+      {
+        window.Echo.private(`challange.`+resp.challange_id)
+        .listen('NewGameEvent', (e) => {
+          console.log(e);
+        });
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
+  }
+
+
+  Prihvati(challangeID)
+  {
+    this.gameService.PrihvatiIzazov(challangeID).subscribe((resp: any) =>
+    {
+      console.log(resp);
+      if(resp)
+      {
+       
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
+  }
+
+  Odbij(challangeID)
+  {
+    this.gameService.OdbijIzazov(challangeID).subscribe((resp: any) =>
+    {
+      console.log(resp);
+      if(resp)
+      {
+        
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
+  }
+
 
   OdjaviSe()
   {
@@ -127,9 +197,6 @@ export class PocetnaComponent implements OnInit {
   }
 
 
-  DajKorisnike()
-  {
-
-  }
+  
 
 }

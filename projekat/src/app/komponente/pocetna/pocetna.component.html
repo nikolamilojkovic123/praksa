@@ -4,19 +4,49 @@
         Odjavi se
     </button>
     <br><br><br><br><br><br>
-    <div class="lista">
-        <mat-card *ngFor="let user of users" style="display: block;">
+    <div class="polje">
+        
+        <h1 style="text-align: center">Aktivni igraci</h1>
+        <div class="lista">
+            <mat-card *ngFor="let user of users" style="display: block;">
+                
+                
+                <mat-grid-list cols="2" rowHeight="100px">
+                    <mat-grid-tile>
+                        {{user.name}}
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-raised-button color="primary"  (click)="Izazovi(user.id)">Izazovi</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
             
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="polje2">
+        <h1>Izazvali su Vas</h1>
+        <br>
+        <div class="lista">
+            <mat-card *ngFor="let c of challanges" style="display: block;">
+                
+                
+                <mat-grid-list cols="3" rowHeight="100px">
+                    <mat-grid-tile>
+                        {{c.name}}
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-raised-button color="primary" style="background-color: green;" (click)="Prihvati(c.challange_id)">Prihvati</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-raised-button color="warn" (click)="Odbij(c.challange_id)">Odbij</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
             
-            <mat-grid-list cols="2">
-                <mat-grid-tile class="prvaKolona">
-                    {{user.name}}
-                </mat-grid-tile>
-                <mat-grid-tile class="drugaKolona">
-                    <button mat-raised-button color="primary">Izazovi</button>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-card>
+            </mat-card>
+        </div>
     </div>
 
 </div>

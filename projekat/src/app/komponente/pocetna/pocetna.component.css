@@ -15,34 +15,71 @@
     color: green;
     border: 1px solid green;
     padding: 1% 2%;
-    
 }
 
 
+.polje
+{
+    float: left;
+    width: 60%;
+    text-align: center;
+}
+
+.polje2
+{
+    float: left;
+    text-align: center;
+}
 .lista
 {
-    width: 30%;
+    width: 60%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    height: 500px;
+    height: 400px;
     overflow: auto;
-
-}
-
-.prvaKolona{
-    text-align: left !important;
-   
-}
-
-.drugaKolona
-{
-    text-align: center !important;
     
 }
 
-mat-grid-tile
+
+.mat-grid-tile .mat-figure
+{ 
+    justify-content: left !important; 
+}
+   
+
+
+
+
+
+/*mat-grid-tile
 {
-    height: 50px !important;
+    /*height: 10px !important;
     border-top: 1px solid black;
+}*/
+mat-card
+{
+    padding: 0;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
