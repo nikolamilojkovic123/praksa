@@ -112,9 +112,17 @@ export class PocetnaComponent implements OnInit {
       console.log(resp);
       if(resp)
       {
-        window.Echo.channel(`challenge.`+resp.challenge_id)
+        window.Echo.private(`challenge.`+resp.challenge_id)
         .listen('NewGameEvent', (e) => {
           console.log(e);
+          window.location.replace(window.location.href+ '/mec/' +resp.challenge_id);
+        })
+        .listen('NewChallengeDeclinedEvent',(e) =>
+        {
+          swal({
+            type: 'warning',
+            text: "Korisnik koga ste izazvali je odustao!"
+          })
         });
       }
     },
@@ -153,7 +161,21 @@ export class PocetnaComponent implements OnInit {
   }
 
   Odbij(challangeID)
-  {
+  { 
+    
+    var izbaci;
+    for(var i=0;i<this.challanges.length;i++)
+    {
+      if(this.challanges[i].challenge_id == challangeID)
+      {
+        izbaci=this.challanges[i];
+        break;
+      }
+    }
+
+    this.challanges.splice(this.challanges.indexOf(izbaci));
+
+
     this.gameService.OdbijIzazov(challangeID).subscribe((resp: any) =>
     {
       console.log(resp);

@@ -4,14 +4,21 @@ import { HomeComponent } from './komponente/home/home.component';
 import { RegisterComponent } from './komponente/register/register.component';
 import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
-
+import { MecComponent } from './komponente/pocetna/mec/mec.component';
 const routes :Routes = 
 [
   { path:'', redirectTo:'home', pathMatch:'full' },
   { path:'home', component:HomeComponent},
   { path:'registracija', component:RegisterComponent },
   { path:'prijava', component:LoginComponent },
-  { path:'igra', component:PocetnaComponent },
+  { path:'igra', 
+    children:
+    [
+      {path:'', component:PocetnaComponent},
+      {path:'mec/:roomID', component:MecComponent},
+    ]
+  },
+  
 ];
 
 

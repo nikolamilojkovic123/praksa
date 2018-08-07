@@ -21,6 +21,7 @@ import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 import { NavbarComponent } from './komponente/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MecComponent } from './komponente/pocetna/mec/mec.component';
 
 declare global{
   interface Window { io: any; }
@@ -35,7 +36,8 @@ declare global{
     HomeComponent,
     LoginComponent,
     PocetnaComponent,
-    NavbarComponent
+    NavbarComponent,
+    MecComponent
   ],
   imports: [
     BrowserModule,
