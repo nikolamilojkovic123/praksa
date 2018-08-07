@@ -36,9 +36,9 @@ export class GameService {
   }
 
 
-  PrihvatiIzazov(challangeID:number)
+  PrihvatiIzazov(challengeID:number)
   {
-    var url = environment.apiUrl+"challenges/accept/"+challangeID;
+    var url = environment.apiUrl+"/challenges/accept/"+challengeID;
 
     let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
     var header = new HttpHeaders().set('authorization',bearerHeader);
@@ -46,9 +46,9 @@ export class GameService {
     return this.http.get(url, {headers:header});
   }
 
-  OdbijIzazov(challangeID:number)
+  OdbijIzazov(challengeID:number)
   {
-    var url = environment.apiUrl+"challenges/decline/"+challangeID;
+    var url = environment.apiUrl+"/challenges/decline/"+challengeID;
 
     let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
     var header = new HttpHeaders().set('authorization',bearerHeader);

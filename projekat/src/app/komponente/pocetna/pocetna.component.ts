@@ -112,7 +112,7 @@ export class PocetnaComponent implements OnInit {
       console.log(resp);
       if(resp)
       {
-        window.Echo.private(`challange.`+resp.challange_id)
+        window.Echo.channel(`challenge.`+resp.challenge_id)
         .listen('NewGameEvent', (e) => {
           console.log(e);
         });
@@ -130,9 +130,9 @@ export class PocetnaComponent implements OnInit {
   }
 
 
-  Prihvati(challangeID)
+  Prihvati(challengeID)
   {
-    this.gameService.PrihvatiIzazov(challangeID).subscribe((resp: any) =>
+    this.gameService.PrihvatiIzazov(challengeID).subscribe((resp: any) =>
     {
       console.log(resp);
       if(resp)
@@ -149,6 +149,7 @@ export class PocetnaComponent implements OnInit {
       })
       
     });
+    console.log(challengeID);
   }
 
   Odbij(challangeID)

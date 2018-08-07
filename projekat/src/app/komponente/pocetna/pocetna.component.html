@@ -26,21 +26,21 @@
     </div>
 
     <div class="polje2">
-        <h1>Izazvali su Vas</h1>
-        <br>
-        <div class="lista">
+        <h1>Izazovi</h1>
+     
+        <div class="lista2">
             <mat-card *ngFor="let c of challanges" style="display: block;">
                 
                 
                 <mat-grid-list cols="3" rowHeight="100px">
                     <mat-grid-tile>
-                        {{c.name}}
+                        {{c.challenger.name}}
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <button mat-raised-button color="primary" style="background-color: green;" (click)="Prihvati(c.challange_id)">Prihvati</button>
+                        <button mat-raised-button color="primary" style="background-color: green;" (click)="Prihvati(c.challenge_id)">Prihvati</button>
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <button mat-raised-button color="warn" (click)="Odbij(c.challange_id)">Odbij</button>
+                        <button mat-raised-button color="warn" (click)="Odbij(c.challenge_id)">Odbij</button>
                     </mat-grid-tile>
                 </mat-grid-list>
 
