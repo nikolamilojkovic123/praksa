@@ -9,18 +9,6 @@ import { element } from '@angular/core/src/render3/instructions';
 
 
 
-/*declare var Echo: any;
-
-
-
-
-
-
-
-window.io = window.io;
-window.Echo = window.Echo || {};
-*/
-
 @Component({
   selector: 'app-pocetna',
   templateUrl: './pocetna.component.html',
@@ -115,12 +103,14 @@ export class PocetnaComponent implements OnInit {
         window.Echo.private(`challenge.`+resp.challenge_id)
         .listen('NewGameEvent', (e) => {
           console.log(e);
-          window.location.replace(window.location.href+ '/mec/' +resp.challenge_id);
+          this.gameService.podaci=e;
+          //console.log(e.game.id);
+          window.location.replace(window.location.href+ '/mec/' +e.game.id);
         })
         .listen('NewChallengeDeclinedEvent',(e) =>
         {
           swal({
-            type: 'warning',
+            type: 'info',
             text: "Korisnik koga ste izazvali je odustao!"
           })
         });
@@ -145,7 +135,9 @@ export class PocetnaComponent implements OnInit {
       console.log(resp);
       if(resp)
       {
-       
+        this.gameService.podaci=resp;
+        //console.log("id  " +resp.data.id);
+        window.location.replace(window.location.href+ '/mec/' +resp.data.id);
       }
     },
     error=>{

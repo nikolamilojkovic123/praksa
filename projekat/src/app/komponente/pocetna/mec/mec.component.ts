@@ -14,6 +14,15 @@ import { GameService } from '../../../servisi/game.service';
 export class MecComponent implements OnInit {
 
   gameID:any;
+  gameData:any;
+  gameInfo:any;
+  userX;
+  userO;
+  naPotezu="x";
+
+
+  polja = [];
+
 
   constructor
   (
@@ -23,10 +32,7 @@ export class MecComponent implements OnInit {
   ) 
   { 
     window.io=io;
-  }
 
-  ngOnInit() 
-  {
     this.gameID = window.location.pathname.split('/')[3];
 
     window.Echo = new Echo({
@@ -40,13 +46,84 @@ export class MecComponent implements OnInit {
           }
       }   
     });
-
-    window.Echo.private(`challenge.`+this.gameID)
-        .listen('NewGameEvent', (e) => {
+    window.Echo.connector.options.auth.headers['X-Socket-ID'] = 'Bearer ' + window.Echo.connector.socket.id;
+    window.Echo.private(`game.`+this.gameID)
+        .listen('NewTakeEvent', (e) => {
           console.log(e);
           
+
         })
+        .listen('NewGameOverEvent', (e) => {
+          console.log(e);
+          
+        });
+
+ 
+      
+
+    this.gameService.GameInfo(this.gameID)
+    .subscribe((resp: any) =>
+    {
+      //console.log(resp);
+      if(resp)
+      {
+        this.gameInfo=resp;
+        //console.log(this.gameInfo.data.user_x_id);
+        this.userX=resp.data.user_x_id;
+        this.userO=resp.data.user_o_id;
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
+  
+    this.setPolja();
+    
+  }
+
+  ngOnInit() 
+  {
+    
+    
+  }
+
+
+  setPolja()
+  {
+    for(let i=0;i<9;i++)
+      this.polja[i]=' ';
+  }
+
+  makeMove(pozicija)
+  {
+    
+    this.gameService.odigraj(pozicija)
+    .subscribe((resp: any) =>
+    {
+      //console.log(resp);
+      if(resp)
+      {
+        console.log(resp);
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
 
   }
+
+
 
 }

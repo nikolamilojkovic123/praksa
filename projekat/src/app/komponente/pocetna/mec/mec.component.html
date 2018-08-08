@@ -1,1 +1,33 @@
-<h1>{{gameID}}</h1>
+
+<div *ngIf="userX">
+  <h1 style="float:left;width: 50%;">
+  <span style="font-size: 170%;font-weight: bold;color: #073175;">{{userX.name}}</span>
+  </h1>
+  <h1 style="float:left;width: 50%;">
+    <span style="font-size: 170%;font-weight: bold;color: red;">{{userO.name}}</span>
+    
+  </h1>
+
+  <br>
+  
+  <h1>
+    Na potezu:<br>
+    <span *ngIf="naPotezu=='x'" style="color: #073175;">{{userX.name}}</span>
+    <span *ngIf="naPotezu=='o'" style="color: red;">{{userO.name}}</span>
+  </h1>
+
+  <div class="tabla">
+    <mat-grid-list class="board" cols="3" rowHeight="1:1">
+      <mat-grid-tile *ngFor="let f of polja; let i = index" (click)="makeMove(i)">
+        
+        <div class="polje" *ngIf="f == ' '">
+          <img src="../../../../assets/images/bela.png" height="100%" width="100%">
+        </div>
+        <div class="polje" *ngIf="f != ' '">
+            <img src="../../../../assets/images/{{f}}.png" height="100%" width="100%">
+          </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  
+  </div>
+</div>

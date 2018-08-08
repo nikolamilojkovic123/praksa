@@ -1,0 +1,32 @@
+h1
+{
+    text-align: center;
+}
+
+
+.board
+{
+    background-image: url(../../../../assets/images/xo_bg.gif);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tabla
+{
+    margin: 0 auto;
+    max-width: 40%;
+    min-width: 210px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    color: white;
+    background-color: #073175;
+
+}
+
+.polje
+{
+    margin:auto;
+    width: 70%;
+    height: 70%;
+}

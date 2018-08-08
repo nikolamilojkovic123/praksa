@@ -12,6 +12,10 @@ import { environment } from '../../environments/environment'
 })
 export class GameService {
 
+
+
+  podaci:any = null;
+
   constructor
   (
     private router: Router,
@@ -55,4 +59,26 @@ export class GameService {
     header.set('Accept','application/json');
     return this.http.get(url, {headers:header});
   }
+
+
+  GameInfo(mecID)
+  {
+    var url = environment.apiUrl+"/games/"+mecID;
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header});
+  }
+
+  odigraj(pozicija)
+  {
+    var url = environment.apiUrl+"/takes/"+pozicija;
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header});
+  }
+
 }
