@@ -50,7 +50,11 @@ export class MecComponent implements OnInit {
     window.Echo.private(`game.`+this.gameID)
         .listen('NewTakeEvent', (e) => {
           console.log(e);
-          
+          this.polja[e.data.position-1]=e.data.symbol;
+          if(e.data.symbol == 'x')
+            this.naPotezu='o';
+          else
+            this.naPotezu='x';
 
         })
         .listen('NewGameOverEvent', (e) => {
@@ -102,14 +106,20 @@ export class MecComponent implements OnInit {
 
   makeMove(pozicija)
   {
-    
-    this.gameService.odigraj(pozicija)
+    console.log(pozicija);
+    this.gameService.odigraj(pozicija+1)
     .subscribe((resp: any) =>
     {
-      //console.log(resp);
+      console.log(resp);
       if(resp)
       {
         console.log(resp);
+        this.polja[resp.data.position-1]=resp.data.symbol;
+        if(resp.data.symbol == 'x')
+          this.naPotezu='o';
+        else
+          this.naPotezu='x';
+
       }
     },
     error=>{
