@@ -6,6 +6,7 @@ import Echo from 'laravel-echo';
 import * as io from 'socket.io-client'
 import { GameService } from '../../../servisi/game.service';
 import { Router } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
 
 
 @Component({
@@ -63,10 +64,18 @@ export class MecComponent implements OnInit {
         .listen('NewGameOverEvent', (e) => {
           console.log(e);
           swal({
-            type: 'info',
-            title: 'Game over:',
-            text: "Winner: "+e.game.winner,
-            timer: 3000,
+            
+            imageUrl:
+              '../../../../assets/images/gameOver.gif',
+            imageWidth: 500,
+            imageHeight: 150,
+            title: 'WINNER',
+            text: e.game.winner ,
+
+            html:
+            '<h1 > Winner <br/><span style:"color:red">'+e.game.winner+'</span> </h1>',
+
+            timer: 7000,
             background: 'black',
            /* backdrop: `
             rgba(0,0,123,0.4)
