@@ -5,6 +5,8 @@ import swal from 'sweetalert2';
 import Echo from 'laravel-echo';
 import * as io from 'socket.io-client'
 import { GameService } from '../../../servisi/game.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-mec',
@@ -29,6 +31,7 @@ export class MecComponent implements OnInit {
     private authService:AuthService,
     private userService:UserServiceService,
     private gameService:GameService,
+    private router: Router,
   ) 
   { 
     window.io=io;
@@ -50,8 +53,8 @@ export class MecComponent implements OnInit {
     window.Echo.private(`game.`+this.gameID)
         .listen('NewTakeEvent', (e) => {
           console.log(e);
-          this.polja[e.data.position-1]=e.data.symbol;
-          if(e.data.symbol == 'x')
+          this.polja[e.take.position-1]=e.take.symbol;
+          if(e.take.symbol == 'x')
             this.naPotezu='o';
           else
             this.naPotezu='x';
@@ -59,6 +62,20 @@ export class MecComponent implements OnInit {
         })
         .listen('NewGameOverEvent', (e) => {
           console.log(e);
+          swal({
+            type: 'info',
+            title: 'Game over:',
+            text: "Winner: "+e.game.winner,
+            timer: 3000,
+            background: 'black',
+           /* backdrop: `
+            rgba(0,0,123,0.4)
+            url("")
+            center left
+            no-repeat
+          `*/
+          onClose:()=> this.router.navigate(['/igra'])
+          })
           
         });
 
