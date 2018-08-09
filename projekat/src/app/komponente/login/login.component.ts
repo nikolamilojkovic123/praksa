@@ -32,6 +32,14 @@ export class LoginComponent implements OnInit {
   { }
 
   ngOnInit() {
+
+    if(this.authService.isSigned()==true)
+    {
+      this.signed=true;
+      this.router.navigate(['/igra']);
+    }
+
+
   }
 
   PrijaviSe()
@@ -45,10 +53,25 @@ export class LoginComponent implements OnInit {
         
         if(answer['access_token'] != null)
         {
-          console.log('usao');
+        
           this.authService.signIn(answer);
           this.afterLogin.emit(true);
-          this.router.navigate(['/igra']);
+
+
+          const toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          
+          toast({
+            type: 'success',
+            title: 'Signed in successfully',
+            onClose: () => this.router.navigate(['/igra'])
+          })
+
+          
         }
       },
       error=>{

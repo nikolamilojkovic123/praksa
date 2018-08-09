@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../servisi/auth.service';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../../servisi/user-service.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +12,14 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
 
-  login:boolean=false;
-
+  login=false;
+  @Output() afterLogout= new EventEmitter<boolean>()
 
   constructor
   (
     private authService:AuthService,
     private router:Router,
+    private userService:UserServiceService,
   ) 
   {
 
@@ -25,24 +28,48 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.login=this.authService.isSigned();
+    if(this.authService.isSigned())
+      this.login=true;
   }
 
   
 
   OdjaviSe()
   {
-    this.authService.logout();
+    this.userService.IzlogujSe().subscribe((resp: any) =>
+    {
+      console.log(resp);
+      if(resp)
+      {
+        this.authService.logout();
+        this.afterLogout.emit(true);
+      }
+    },
+    error=>{
+      console.log("Error: "+error.error.message);
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: error.error.message
+      })
+      
+    });
+
   }
 
   PrebaciNaPocetnu()
   {
-    if(localStorage.getItem('acces_token') != null)
-      console.log('prijavljen');
-      //this.router.navigate(['/igra']);
+    //let login=this.authService.isSigned();
+    if(this.authService.isSigned()==true)
+      //console.log("prijavljen");
+      this.router.navigate(['/igra']);
     else
-      //this.router.navigate(['/home']);
-      console.log('nije prijavljen');
+    {  
+      this.router.navigate(['/home']);
+      //console.log('nije prijavljen');
+      //let pom=this.authService.isSigned();
+      //console.log(this.authService.isSigned()+"");
+    }
 
   }
 

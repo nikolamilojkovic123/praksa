@@ -3,6 +3,9 @@
     <button class="odjava" (click)="OdjaviSe()">
         Odjavi se
     </button>
+    <button class="odjava" style="margin-right: 10%;"(click)="VidiSvojProfil()">
+            Moj profil
+        </button>
     <br><br><br><br><br><br>
     <div class="polje">
         
@@ -11,12 +14,18 @@
             <mat-card *ngFor="let user of users" style="display: block;">
                 
                 
-                <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-list cols="3" rowHeight="100px">
                     <mat-grid-tile>
                         {{user.name}}
                     </mat-grid-tile>
                     <mat-grid-tile>
-                        <button mat-raised-button color="primary"  (click)="Izazovi(user.id)">Izazovi</button>
+                        <button mat-raised-button color="primary" style="background-color: #073175;"  (click)="Izazovi(user.id)">Izazovi</button>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile>
+                        <button mat-raised-button color="primary"  (click)="VidiDetaljeKorisnika(user.id)">
+                            Detalji
+                        </button>
                     </mat-grid-tile>
                 </mat-grid-list>
 
@@ -32,7 +41,7 @@
             <mat-card *ngFor="let c of challanges" style="display: block;">
                 
                 
-                <mat-grid-list cols="3" rowHeight="100px">
+                <mat-grid-list cols="4" rowHeight="100px">
                     <mat-grid-tile>
                         {{c.challenger.name}}
                     </mat-grid-tile>
@@ -42,11 +51,43 @@
                     <mat-grid-tile>
                         <button mat-raised-button color="warn" (click)="Odbij(c.challenge_id)">Odbij</button>
                     </mat-grid-tile>
+                    <mat-grid-tile>
+                        <button mat-raised-button color="primary"  (click)="VidiSkor(c.challenger.id)" >
+                            Medjusobni skor
+                        </button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+            
+            </mat-card>
+        </div>
+        
+    </div>
+    <div class="pom" id="destination"></div>
+    <div class="polje3" *ngIf="mecevi.length != 0"  >
+       
+        <h1>Medjusobni skor</h1>
+        <div class="lista3" >
+            <mat-card *ngFor="let c of mecevi" style="display: block;" >
+                
+                
+                <mat-grid-list cols="2" rowHeight="100px">
+                    <mat-grid-tile>
+                        <span *ngIf="c.user_o_id.name == c.winner" style="color:red; font-weight: bold;">{{c.user_x_id.name}}</span>
+                        <span *ngIf="c.user_x_id.name == c.winner" style="color:green; font-weight: bold;">{{c.user_x_id.name}}</span>
+                        <span *ngIf="c.winner == 'Draw'" style="color:#f4cb42; font-weight: bold;">{{c.user_x_id.name}}</span>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <span *ngIf="c.user_x_id.name == c.winner" style="color:red;font-weight: bold;">{{c.user_o_id.name}}</span>
+                        <span *ngIf="c.user_o_id.name == c.winner" style="color:green; font-weight: bold;">{{c.user_o_id.name}}</span>
+                        <span *ngIf="c.winner == 'Draw'" style="color:#f4cb42; font-weight: bold;">{{c.user_o_id.name}}</span>
+                    </mat-grid-tile>
+                   
                 </mat-grid-list>
 
             
             </mat-card>
         </div>
     </div>
-
+    
 </div>

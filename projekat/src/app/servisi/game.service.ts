@@ -81,4 +81,15 @@ export class GameService {
     return this.http.get(url, {headers:header});
   }
 
+
+  MedjusobniSkor(userID)
+  {
+    var url = environment.apiUrl+"/head-to-head/"+userID;
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header});
+  }
+
 }

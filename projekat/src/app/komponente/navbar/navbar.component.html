@@ -1,8 +1,10 @@
 <div class="ul">
    
-        <h1 style="text-align: center" (click)="PrebaciNaPocetnu()">Tic Tac Toe</h1>
-    
-    
-   
+        <div class="naslov" style="text-align: center">
+                <h1>
+                        <a *ngIf="login==true" [routerLink]='["/igra"]'>Tic Tac Toe</a>
+                        <a *ngIf="login==false" [routerLink]='["/home"]'>Tic Tac Toe</a>
+                </h1>
+        </div>   
     
 </div>

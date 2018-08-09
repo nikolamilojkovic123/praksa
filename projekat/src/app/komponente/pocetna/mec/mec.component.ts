@@ -53,7 +53,7 @@ export class MecComponent implements OnInit {
     window.Echo.connector.options.auth.headers['X-Socket-ID'] = 'Bearer ' + window.Echo.connector.socket.id;
     window.Echo.private(`game.`+this.gameID)
         .listen('NewTakeEvent', (e) => {
-          console.log(e);
+          //console.log(e);
           this.polja[e.take.position-1]=e.take.symbol;
           if(e.take.symbol == 'x')
             this.naPotezu='o';
@@ -62,21 +62,22 @@ export class MecComponent implements OnInit {
 
         })
         .listen('NewGameOverEvent', (e) => {
-          console.log(e);
+          //console.log(e);
           swal({
             
             imageUrl:
               '../../../../assets/images/gameOver.gif',
             imageWidth: 500,
             imageHeight: 150,
-            title: 'WINNER',
-            text: e.game.winner ,
+           // title: 'WINNER',
+            //text: e.game.winner ,
 
             html:
-            '<h1 > Winner <br/><span style:"color:red">'+e.game.winner+'</span> </h1>',
-
+            '<h1 style="font-size:250%;color:white"> <span *ngIf="'+e.game.winner+'!="Draw"'+'">Pobednik<span> <br/><span style="color:red">'+e.game.winner+'</span> </h1>',
+            
             timer: 7000,
             background: 'black',
+            
            /* backdrop: `
             rgba(0,0,123,0.4)
             url("")
@@ -132,14 +133,14 @@ export class MecComponent implements OnInit {
 
   makeMove(pozicija)
   {
-    console.log(pozicija);
+    //console.log(pozicija);
     this.gameService.odigraj(pozicija+1)
     .subscribe((resp: any) =>
     {
-      console.log(resp);
+      //console.log(resp);
       if(resp)
       {
-        console.log(resp);
+        //console.log(resp);
         this.polja[resp.data.position-1]=resp.data.symbol;
         if(resp.data.symbol == 'x')
           this.naPotezu='o';

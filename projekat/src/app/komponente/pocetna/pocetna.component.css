@@ -1,27 +1,41 @@
 .odjava
 {
     float: right;
-    margin-top: 1%;
+    margin-top: -42px;
     margin-right: 3%;
     border: none;
     background-color: transparent;
-    color:#073175;
+    /*color:#073175;*/
+    color:white;
     font-size: 120%;
     display: block;
+    cursor: pointer;
+    
 }
 
-.odjava:hover
+.pom{
+    float: left;
+    width: 100%;
+    margin:0;
+    padding:0;
+    height: 0;
+}
+
+  .swal-overlay {
+    padding-left: 0;
+  }
+/*.odjava:hover
 {
     color: green;
     border: 1px solid green;
     padding: 1% 2%;
-}
+}*/
 
 
 .polje
 {
     float: left;
-    width: 60%;
+    width: 50%;
     text-align: center;
 }
 
@@ -29,11 +43,11 @@
 {
     float: left;
     text-align: center;
-    width: 40%;
+    width: 50%;
 }
 .lista
 {
-    width: 60%;
+    width: 70%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -43,7 +57,7 @@
 }
 .lista2
 {
-    width: 80%;
+    width: 90%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -51,6 +65,26 @@
     overflow: auto;
     
 }
+
+.lista3
+{
+    width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    overflow: auto;
+    
+}
+.polje3
+{
+   margin-top:0;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10%;
+    float: left;
+}
+
 
 
 .mat-grid-tile .mat-figure

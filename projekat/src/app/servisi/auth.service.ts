@@ -43,9 +43,18 @@ export class AuthService {
 
   isSigned():boolean
   {
-    localStorage.getItem('acces_token') != null ? this.signed=true : this.signed=false;
+    localStorage.getItem('access_token') != null ? this.signed=true : this.signed=false;
     this.isLogged.emit(this.signed);
     return this.signed;
+  }
+
+  daLiJePrijavljen():boolean
+  {
+    let prijavljen = false;
+    if(localStorage.getItem('access_token')!=null || localStorage.getItem('access_token')!='')  
+      prijavljen= true;
+
+    return prijavljen;
   }
 
   logout()
