@@ -20,7 +20,7 @@ export class PocetnaComponent implements OnInit {
   users = [];
   challanges = [];
   mecevi = [];
-
+  poruka="";
 
   constructor
   (
@@ -231,6 +231,14 @@ export class PocetnaComponent implements OnInit {
       if(resp)
       {
         this.mecevi=resp.data;
+        if(this.mecevi.length==0)
+        {
+          swal({
+            type: 'info',
+            title: 'Nemate nijedan odigran mec sa izabranim korisnikom!',
+            timer: 3000,
+          })
+        }
         const config: ScrollToConfigOptions = {
           target: 'destination'
         };

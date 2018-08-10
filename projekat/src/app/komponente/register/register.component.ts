@@ -46,8 +46,18 @@ export class RegisterComponent implements OnInit {
         console.log(resp);
         if(resp)
         {
-          this.toastr.success(`Uspesno ste se registrovali`);
-          this.router.navigate(["/prijava"]);
+          const toast = swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          
+          toast({
+            type: 'success',
+            title: 'Signed up successfully',
+            onClose: () => this.router.navigate(['/prijava'])
+          })
         }
       },
       error=>{

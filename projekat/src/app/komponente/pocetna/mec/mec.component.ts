@@ -63,6 +63,20 @@ export class MecComponent implements OnInit {
         })
         .listen('NewGameOverEvent', (e) => {
           //console.log(e);
+          let pp="";
+          let pobednik ="";
+          if(e.game.winner!='Draw')
+          {
+            pp="Pobednik";
+            pobednik = e.game.winner;
+          }  
+          else
+          {
+            pobednik = "Nereseno";
+          }
+        
+
+
           swal({
             
             imageUrl:
@@ -71,9 +85,9 @@ export class MecComponent implements OnInit {
             imageHeight: 150,
            // title: 'WINNER',
             //text: e.game.winner ,
-
+            
             html:
-            '<h1 style="font-size:250%;color:white"> <span *ngIf="'+e.game.winner+'!="Draw"'+'">Pobednik<span> <br/><span style="color:red">'+e.game.winner+'</span> </h1>',
+            '<h1 style="font-size:250%;color:white"> '+pp+' <br/><span style="color:red">'+pobednik+'</span> </h1>',
             
             timer: 7000,
             background: 'black',
