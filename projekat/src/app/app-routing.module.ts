@@ -5,6 +5,11 @@ import { RegisterComponent } from './komponente/register/register.component';
 import { LoginComponent } from './komponente/login/login.component';
 import { PocetnaComponent } from './komponente/pocetna/pocetna.component';
 import { MecComponent } from './komponente/pocetna/mec/mec.component';
+import { ProfilComponent } from './komponente/profil/profil.component';
+
+
+
+
 const routes :Routes = 
 [
   { path:'', redirectTo:'home', pathMatch:'full' },
@@ -18,7 +23,7 @@ const routes :Routes =
       {path:'mec/:roomID', component:MecComponent},
     ]
   },
-  
+  { path:'profil/:userID', component: ProfilComponent},
 ];
 
 

@@ -1,0 +1,120 @@
+.odjava
+{
+    float: right;
+    margin-top: -42px;
+    margin-right: 3%;
+    border: none;
+    background-color: transparent;
+    /*color:#073175;*/
+    color:white;
+    font-size: 120%;
+    display: block;
+    cursor: pointer;
+    
+}
+
+.polje1
+{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.polje2
+{
+    float: left;
+    text-align: center;
+    width: 50%;
+}
+
+.podaci
+{
+    width: 60%;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.mecevi
+{
+    width: 80%;
+    margin: 0 auto;
+
+}
+/*
+tr td 
+{
+    text-align: center;
+    font-weight: normal;
+    font-size: 150%;
+    
+    margin:auto;
+}
+tr
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: 100%;
+    border-bottom: 1px solid black;
+}
+
+table{
+    margin: 0 auto;
+    width: 80%;
+}
+table thead{
+
+    border-bottom: 1px solid black;
+}
+
+tr th 
+{
+    font-size: 150%;
+    padding-bottom: 2%;
+}
+
+th, td{
+    border-bottom: 1px solid black;
+}*/
+
+table{
+    border-collapse: collapse;
+    width: 80%;
+    
+}
+
+th, td{
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid black;
+   
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+th{
+    font-size: 150%;
+    font-weight: bold;
+}
+
+td{
+    font-size: 120%;
+}
+
+
+.polje3{
+    margin-top: 10%;
+    margin-bottom: 20%;
+    float: left;
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+}
+
+.pita
+{
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+rect{
+    background-color: transparent;
+}

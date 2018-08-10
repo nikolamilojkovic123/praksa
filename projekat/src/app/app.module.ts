@@ -11,6 +11,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatCardModule} from '@angular/material/card';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import {MatTableModule} from '@angular/material/table';
+import { ChartModule } from 'angular-highcharts';
+
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './komponente/register/register.component';
@@ -22,6 +25,7 @@ import { NavbarComponent } from './komponente/navbar/navbar.component';
 import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MecComponent } from './komponente/pocetna/mec/mec.component';
+import { ProfilComponent } from './komponente/profil/profil.component';
 
 declare global{
   interface Window { io: any; }
@@ -37,7 +41,8 @@ declare global{
     LoginComponent,
     PocetnaComponent,
     NavbarComponent,
-    MecComponent
+    MecComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,8 @@ declare global{
     MatButtonModule,
     MatGridListModule,
     ScrollToModule.forRoot(),
+    MatTableModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

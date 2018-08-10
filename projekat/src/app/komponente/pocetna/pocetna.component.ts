@@ -7,6 +7,7 @@ import * as io from 'socket.io-client'
 import { GameService } from '../../servisi/game.service';
 import { element } from '@angular/core/src/render3/instructions';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pocetna',
@@ -28,6 +29,7 @@ export class PocetnaComponent implements OnInit {
     private userService:UserServiceService,
     private gameService:GameService,
     private _scrollToService: ScrollToService,
+    private router: Router,
   ) 
   { 
     window.io=io;
@@ -260,6 +262,10 @@ export class PocetnaComponent implements OnInit {
 
   VidiDetaljeKorisnika(userID)
   {
+
+    this.router.navigate(['/profil/'+userID]);
+
+    /*
     this.userService.DetaljiKorisnika(userID).subscribe((resp: any) =>
     {
       //console.log(resp.data);
@@ -281,12 +287,15 @@ export class PocetnaComponent implements OnInit {
         text: error.error.message
       })
       
-    });
+    });*/
   }
   
 
   VidiSvojProfil()
   {
+    let id=localStorage.getItem('id');
+    this.router.navigate(['/profil/'+id]);
+/*
     this.userService.DetaljiProfila().subscribe((resp: any) =>
     {
      // console.log(resp.data);
@@ -308,7 +317,7 @@ export class PocetnaComponent implements OnInit {
         text: error.error.message
       })
       
-    });
+    });*/
   }
 
 }

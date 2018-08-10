@@ -91,4 +91,24 @@ export class UserServiceService {
     return this.http.get(url, {headers:header})
   }
 
+
+  dajSveMeceve(userID)
+  {
+    var url = environment.apiUrl+"/past-games/"+userID;
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header})
+  }
+
+  dajSveMojeMeceve()
+  {
+    var url = environment.apiUrl+"/past-games";
+
+    let bearerHeader:string = 'Bearer' + localStorage.getItem('access_token');
+    var header = new HttpHeaders().set('authorization',bearerHeader);
+    header.set('Accept','application/json');
+    return this.http.get(url, {headers:header})
+  }
 }

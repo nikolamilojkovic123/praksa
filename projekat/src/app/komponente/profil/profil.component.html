@@ -1,0 +1,54 @@
+<div class="container" *ngIf="podaci"> 
+    
+  <button class="odjava" (click)="OdjaviSe()">
+      Odjavi se
+  </button>
+  <button class="odjava" style="margin-right: 10%;"(click)="VidiSvojProfil()">
+      Moj profil
+  </button>
+  <button class="odjava" style="margin-right: 17%;" [routerLink]="['/igra']">
+      Pocetna
+  </button>
+  <br><br><br><br><br><br>
+    
+  <div class="polje1" >
+    <div class="podaci">
+      <h1>Ime:   {{podaci.name}}</h1>
+      <br>
+      <h1>Email:   {{podaci.email}}</h1>
+      <br>
+      <div style="display: block;margin-top:5%" >
+          <div [chart]="chartSve"></div>
+        </div>
+    </div>
+  </div>
+  <div class="polje2">
+    <div class="mecevi">
+      <table>
+          <thead>
+              <tr>
+                  <th scope="col">Igrac 1</th>
+                  <th scope="col">Igrac 2</th>
+                  <th scope="col">Pobednik</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let i of sviMecevi" >
+                  <td style="color:#073175">{{i.user_x_id.name}}</td>
+                  <td style="color:red">{{i.user_o_id.name}}</td>
+                  <td ><span *ngIf="i.winner!='Draw'">
+                    <span *ngIf="i.winner==i.user_x_id.name" style="color:#073175">{{i.winner}}</span>
+                    <span *ngIf="i.winner==i.user_o_id.name" style="color:red">{{i.winner}}</span>
+                    
+                  </span>
+                  <span *ngIf="i.winner=='Draw'" style="color:#f4cb42">
+                    Nereseno
+                  </span>
+                </td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  
+</div>
